@@ -22,17 +22,16 @@ io.on("connection",(socket)=>{
     console.log("One user has joined");
 
     socket.on("joinRoom",({username,room})=>{
-      console.log(username,room)
 
       const user = userJoin(socket.id, username, room);
 
       socket.join(user.room);
 
       // Welcome message 
-      socket.emit("message",formateMessage("Heal-Hub","Welcome to Heal-Hub"));
+      socket.emit("message",formateMessage("Heal-Care","Welcome to Heal-Care"));
       socket.emit("roomname",room)
       // Broadcasting other users
-      socket.broadcast.to(user.room).emit("message",formateMessage("Heal-Hub",`${username} has joined the chat`));
+      socket.broadcast.to(user.room).emit("message",formateMessage("Heal-Care",`${username} has joined the chat`));
 
      
 
@@ -62,7 +61,7 @@ console.log(msg)
         console.log("one user left");
 
           // Broadcastion other users on leaving 
-       io.to(user.room).emit("message",formateMessage("Heal-Hub",`${user.username} has left the chat`));
+       io.to(user.room).emit("message",formateMessage("Heal-Care",`${user.username} has left the chat`));
  
        // getting room users.
   io.to(user.room).emit("allusers",{
