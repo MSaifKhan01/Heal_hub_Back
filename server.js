@@ -47,9 +47,11 @@ io.on("connection",(socket)=>{
        
 console.log(msg)
 
+
         const user = getCurrentUser(socket.id);
 
         console.log(user.room)
+        
         io.to(user.room).emit("message",formateMessage(user.username,msg));
 
      });
